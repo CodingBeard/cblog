@@ -131,7 +131,7 @@ func NewLogger(config LoggerConfig) (*Logger, error) {
 		}
 	}
 
-	l, e := logger.New(NewMultipleWriter(writers...), config.StdOutColor, config.LogLevel)
+	l, e := logger.New(NewMultipleWriter(writers...), config.StdOutColor, logger.LogLevel(config.LogLevel))
 	if e != nil {
 		return nil, e
 	}
@@ -149,8 +149,12 @@ func NewLogger(config LoggerConfig) (*Logger, error) {
 	return cblogger, nil
 }
 
-func (l *Logger) GetUnderlyingLogger() *logger.Logger {
-	return l.logger
+func (l *Logger) GetStackTraceOffset() int {
+	return l.logger.GetPosOverride()
+}
+
+func (l *Logger) SetStackTraceOffset(offset int) {
+	l.logger.SetPosOverride(offset)
 }
 
 func (l *Logger) Close() error {
