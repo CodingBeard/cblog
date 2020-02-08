@@ -269,7 +269,7 @@ func (l *Logger) StackAsError(category, message string) {
 		message = "Stack info"
 	}
 	message += "\n"
-	stack := Stack()
+	stack := l.Stack()
 	stackParts := strings.Split(stack, "\n")
 	newStackParts := []string{stackParts[0]}
 	newStackParts = append(newStackParts, stackParts[3:]...)
@@ -285,7 +285,7 @@ func (l *Logger) StackAsCritical(category, message string) {
 		message = "Stack info"
 	}
 	message += "\n"
-	stack := Stack()
+	stack := l.Stack()
 	stackParts := strings.Split(stack, "\n")
 	newStackParts := []string{stackParts[0]}
 	newStackParts = append(newStackParts, stackParts[3:]...)
@@ -293,7 +293,7 @@ func (l *Logger) StackAsCritical(category, message string) {
 	l.CriticalF(category, message+stack)
 }
 
-func Stack() string {
+func (l *Logger) Stack() string {
 	buf := make([]byte, 1000000)
 	runtime.Stack(buf, false)
 	buf = bytes.Trim(buf, "\x00")
