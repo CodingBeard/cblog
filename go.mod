@@ -2,4 +2,4 @@ module github.com/codingbeard/cblog
 
 go 1.13
 
-require github.com/codingbeard/go-logger v0.0.0-20200207170645-b5b767be7dc7 // indirect
+require github.com/codingbeard/go-logger v0.0.0-20201005090617-a00c36603e2d // indirect
