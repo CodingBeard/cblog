@@ -28,7 +28,7 @@ func (m MultipleWriter) Write(p []byte) (n int, err error) {
 }
 
 func NewMultipleWriter(writers ...io.Writer) MultipleWriter {
-	return MultipleWriter{writers:writers}
+	return MultipleWriter{writers: writers}
 }
 
 type LogLevel int
@@ -80,9 +80,9 @@ type LoggerConfig struct {
 
 type Logger struct {
 	defaultFile *os.File
-	config LoggerConfig
-	logger *logger.Logger
-	closers []io.Closer
+	config      LoggerConfig
+	logger      *logger.Logger
+	closers     []io.Closer
 }
 
 func DefaultLoggerConfig() LoggerConfig {
@@ -90,7 +90,7 @@ func DefaultLoggerConfig() LoggerConfig {
 		LogLevel:    InfoLevel,
 		Format:      "%{time:2006-01-02 15:04:05.000 -0700} : %{category} : %{level} : %{file}:%{line} : %{message}",
 		LogToStdOut: true,
-		FilePerm: os.ModePerm,
+		FilePerm:    os.ModePerm,
 	}
 }
 
