@@ -164,8 +164,13 @@ func (c *Console) Print(message string, args ...interface{}) {
 				message += "\n"
 			}
 		}
-	} else if len(args) > 0 {
-		message = fmt.Sprintf(message, args...)
+	} else {
+		if !newLine {
+			message += "\n"
+		}
+		if len(args) > 0 {
+			message = fmt.Sprintf(message, args...)
+		}
 	}
 
 	if !newLine {
